@@ -40,11 +40,7 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>gps_umd</build_depend>
-  <build_depend>nautonomous_navigation_ublox</build_depend>
   <build_depend>roscpp</build_depend>
-  <run_depend>gps_umd</run_depend>
-  <run_depend>nautonomous_navigation_ublox</run_depend>
   <run_depend>roscpp</run_depend>
 
 

@@ -5,8 +5,6 @@ project(nautonomous_navigation_gps)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  gps_umd
-  nautonomous_navigation_ublox
   roscpp
 )
 
