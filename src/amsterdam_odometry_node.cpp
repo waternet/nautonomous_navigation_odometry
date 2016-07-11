@@ -9,6 +9,7 @@
 #include <sensor_msgs/NavSatFix.h>
 #include <gps_common/conversions.h>
 #include <nav_msgs/Odometry.h>
+#include <gps_common/>
 
 using namespace gps_common;
 
