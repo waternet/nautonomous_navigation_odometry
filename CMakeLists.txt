@@ -126,16 +126,31 @@ include_directories(
 # add_dependencies(nautonomous_navigation_gps ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(nautonomous_navigation_gps_node src/nautonomous_navigation_gps_node.cpp)
+ add_executable(papaverweg_odometry_node src/papaverweg_odometry_node.cpp)
+ add_executable(amsterdam_odometry_node	src/amsterdam_odometry_node.cpp)
+ add_executable(utm_odometry_node src/utm_odometry_node.cpp)
+ add_executable(wpk_odometry_node src/wpk_odometry_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(nautonomous_navigation_gps_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(nautonomous_navigation_gps_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(papaverweg_odometry_node
+   ${catkin_LIBRARIES}
+ )
+
+target_link_libraries(amsterdam_odometry_node
+   ${catkin_LIBRARIES}
+ )
+
+target_link_libraries(utm_odometry_node
+   ${catkin_LIBRARIES}
+ )
+
+target_link_libraries(wpk_odometry_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##

@@ -47,7 +47,7 @@
         <param name="ublox_version" type="int" value="$(arg ublox_version)"/>
     </node>
 
-    <node name="gps_conv2" pkg="gps_common" type="papaverweg_odometry_node" output="$(arg output)">
+    <node name="gps_conv2" pkg="nautonomous_navigation_gps" type="papaverweg_odometry_node" output="$(arg output)">
   <remap from="odom" to="gps_odom"/>
   <remap from="fix" to="/gps/fix" />
   <param name="rot_covariance" value="99999" />
