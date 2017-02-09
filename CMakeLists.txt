@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nautonomous_navigation_gps)
+project(nautonomous_navigation_odometry)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  gps_common
 )
 
 ## System dependencies are found with CMake's conventions
@@ -126,29 +127,14 @@ include_directories(
 # add_dependencies(nautonomous_navigation_gps ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
- add_executable(papaverweg_odometry_node src/papaverweg_odometry_node.cpp)
- add_executable(amsterdam_odometry_node	src/amsterdam_odometry_node.cpp)
- add_executable(utm_odometry_node src/utm_odometry_node.cpp)
- add_executable(wpk_odometry_node src/wpk_odometry_node.cpp)
+ add_executable(gps_odometry_node src/gps_odometry_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(nautonomous_navigation_gps_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(papaverweg_odometry_node
-   ${catkin_LIBRARIES}
- )
-
-target_link_libraries(amsterdam_odometry_node
-   ${catkin_LIBRARIES}
- )
-
-target_link_libraries(utm_odometry_node
-   ${catkin_LIBRARIES}
- )
-
-target_link_libraries(wpk_odometry_node
+ target_link_libraries(gps_odometry_node
    ${catkin_LIBRARIES}
  )
 

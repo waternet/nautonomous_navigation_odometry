@@ -1,0 +1,20 @@
+<launch>
+	<arg name="log" default="false"/>
+
+	<node name="gps_odometry_node" pkg="nautonomous_navigation_odometry" type="gps_odometry_node" output="screen">
+		
+		<!-- Inputs -->
+  		<remap from="fix" to="/gps/fix" />
+		
+		<!-- Parameters -->
+  		<param name="rot_covariance" value="99999" />
+  		<param name="frame_id" value="base_footprint" />
+		<param name="center_latitude" value="0.0" />
+		<param name="center_longitude" value="0.0" />
+		<!-- Outputs -->
+		<remap from="odom" to="/gps/odom"/>
+
+	</node>
+
+	<node pkg="rosbag" type="record" name="rosbag_gps" args="record -o /media/NautonomousBlackBox/bags/GPS/gps_ublox /gps/fix /gps_odom" output="screen" if="$(arg log)"/>
+</launch>
