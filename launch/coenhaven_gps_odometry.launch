@@ -1,4 +1,5 @@
 <launch>
+	<!-- vim: set ft=xml noet : -->
 	<arg name="log" default="false"/>
 
 	<node name="gps_odometry_node" pkg="nautonomous_navigation_odometry" type="gps_odometry_node" output="screen">
@@ -9,8 +10,15 @@
 		<!-- Parameters -->
   		<param name="rot_covariance" value="99999" />
   		<param name="frame_id" value="base_footprint" />
+
+		<!--hoofdkantoor -->
 		<param name="center_latitude" value="52.340053" />
 		<param name="center_longitude" value="4.917636" />
+
+		<!--coenhaven
+		<param name="center_latitude" value="52.40568" />
+		<param name="center_longitude" value="4.86406" />
+		-->
 
 		<!-- Outputs -->
 		<remap from="odom" to="/gps/odom"/>
