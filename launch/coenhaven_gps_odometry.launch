@@ -14,8 +14,9 @@
 		<!--hoofdkantoor -->
 		<param name="center_latitude" value="52.340053" />
 		<param name="center_longitude" value="4.917636" />
-
-		<!--coenhaven
+		
+		
+		<!--coenhaven 
 		<param name="center_latitude" value="52.40568" />
 		<param name="center_longitude" value="4.86406" />
 		-->

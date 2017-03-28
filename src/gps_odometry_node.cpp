@@ -1,4 +1,4 @@
-/*
+/**
  * Translates sensor_msgs/NavSat{Fix,Status} into nav_msgs/Odometry using UTM
  */
 
@@ -18,6 +18,12 @@ double rot_cov;
 double center_latitude = 0.0,   center_longitude = 0.0;    
 double northing = 0.0,          easting = 0.0;
 double northingCenter = 0.0,    eastingCenter = 0.0;
+
+/**
+ * \brief Publishes odometry to '/gps/odom'.
+ * \params sensor_msgs::NavSatFixConstPtr& fix
+ * \return
+ */
 
 void publishOdometry(const sensor_msgs::NavSatFixConstPtr& fix){
     if (odom_pub) {
@@ -71,6 +77,13 @@ void publishOdometry(const sensor_msgs::NavSatFixConstPtr& fix){
         odom_pub.publish(odom);
     }
 }
+
+/**
+ * \brief Callback function for 'fix' topic, transforms GPS to UTM using 'gps_common::LLtoUTM' func. Calls publishOdometry().
+ * \param sensor_msgs::NavSatFixConstPtr& fix
+ * \return
+ */
+
 void callbackGPSFix(const sensor_msgs::NavSatFixConstPtr& fix) {
     if (fix->status.status == sensor_msgs::NavSatStatus::STATUS_NO_FIX) {
         ROS_INFO("No fix.");
@@ -85,8 +98,13 @@ void callbackGPSFix(const sensor_msgs::NavSatFixConstPtr& fix) {
     gps_common::LLtoUTM(center_latitude, center_longitude, northingCenter, eastingCenter, zone);
 
     publishOdometry(fix);
-
 }
+
+/**
+ * \brief Subscribes to 'fix', publishes to 'odom'.
+ * \param
+ * \return
+ */
 
 int main (int argc, char **argv) {
     ros::init(argc, argv, "gps_odometry_node");
