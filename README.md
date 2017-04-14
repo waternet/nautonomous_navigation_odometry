@@ -13,7 +13,7 @@ gps_odometry_node
 /gps/odom
 
 ## Files
-[Src](../../doxygen_nautonomous/html/dir_f0786d731d6caa33f02f75acf685d0f7.html)
+[Src](dir_f0786d731d6caa33f02f75acf685d0f7.html)
 
 ##Overview
 ![propulsion_sim.launch](../images/launch_coenhaven_gps_odometry.png)
