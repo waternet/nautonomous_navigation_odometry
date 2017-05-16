@@ -9,6 +9,7 @@
 #include <sensor_msgs/NavSatFix.h>
 #include <gps_common/conversions.h>
 #include <nav_msgs/Odometry.h>
+#include <std_msgs/Float32MultiArray.h>
 
 ros::Publisher odom_pub;
 std::string frame_id, child_frame_id, zone;
@@ -79,12 +80,29 @@ void publishOdometry(const sensor_msgs::NavSatFixConstPtr& fix){
 }
 
 /**
+ * \brief Callback for cropper location. Sets location of center of the cropped map
+ * \param 
+ */
+void callbackCropper(const std_msgs::Float32MultiArray& msg) {
+
+    ROS_INFO("Callback map location: %f / %f", msg.data[0], msg.data[1]);
+
+    center_latitude = msg.data[0];
+    center_longitude = msg.data[1];
+}
+
+/**
  * \brief Callback function for 'fix' topic, transforms GPS to UTM using 'gps_common::LLtoUTM' func. Calls publishOdometry().
  * \param sensor_msgs::NavSatFixConstPtr& fix
  * \return
  */
 
 void callbackGPSFix(const sensor_msgs::NavSatFixConstPtr& fix) {
+    if(center_latitude == 0.0 && center_longitude == 0.0){
+        ROS_INFO("No specific center latitude and longitude set jet, ignoring gps callback");
+        return;	
+    }
+
     if (fix->status.status == sensor_msgs::NavSatStatus::STATUS_NO_FIX) {
         ROS_INFO("No fix.");
         return;
@@ -118,10 +136,8 @@ int main (int argc, char **argv) {
     priv_node.param<double>("center_longitude", center_longitude, 0.0);
     ROS_INFO("Center (%f, %f)", center_latitude, center_longitude);
 
-    if(center_latitude == 0.0 && center_longitude == 0.0){
-        ROS_INFO("No specific center latitude and longitude denoted in launch file! Edit the launch file to include the specific coordinates of the destination. Exitting -1");
-        return -1;	
-    }
+    //Subscribe to map cropper, sets center of current map 
+    ros::Subscriber crop_sub = node.subscribe("cropper_map_gps", 10, callbackCropper);
 
     odom_pub = node.advertise<nav_msgs::Odometry>("odom", 10);
 
