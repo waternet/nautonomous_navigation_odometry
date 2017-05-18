@@ -127,6 +127,20 @@ void callbackGPSFix(const sensor_msgs::NavSatFixConstPtr& fix) {
 int main (int argc, char **argv) {
     ros::init(argc, argv, "gps_odometry_node");
     ros::NodeHandle node;
+
+    bool simulate;
+    node.getParam("simulate", simulate);
+
+    //Center off map is simulated or set by map cropper
+    if(simulate){
+        //Coenhaven
+        center_latitude = 52.40568;
+        center_longitude = 4.86406;
+    }else{
+        //Subscribe to map cropper, sets center of current map 
+        ros::Subscriber crop_sub = node.subscribe("cropper_map_gps", 10, callbackCropper);        
+    }  
+
     ros::NodeHandle priv_node("~");
 
     priv_node.param<std::string>("frame_id", frame_id, "");
@@ -135,9 +149,6 @@ int main (int argc, char **argv) {
     priv_node.param<double>("center_latitude", center_latitude, 0.0);
     priv_node.param<double>("center_longitude", center_longitude, 0.0);
     ROS_INFO("Center (%f, %f)", center_latitude, center_longitude);
-
-    //Subscribe to map cropper, sets center of current map 
-    ros::Subscriber crop_sub = node.subscribe("cropper_map_gps", 10, callbackCropper);
 
     odom_pub = node.advertise<nav_msgs::Odometry>("odom", 10);
 

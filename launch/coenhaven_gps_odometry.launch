@@ -2,6 +2,9 @@
 	<!-- vim: set ft=xml noet : -->
 	<arg name="log" default="false"/>
 
+	<arg name="simulate" default="true"/>
+	<param name="simulate" value="$(arg simulate)"/>
+
 	<node name="gps_odometry_node" pkg="nautonomous_navigation_odometry" type="gps_odometry_node" output="screen">
 		
 		<!-- Inputs -->
