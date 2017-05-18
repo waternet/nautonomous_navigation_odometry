@@ -19,6 +19,8 @@ double rot_cov;
 double center_latitude = 0.0,   center_longitude = 0.0;    
 double northing = 0.0,          easting = 0.0;
 double northingCenter = 0.0,    eastingCenter = 0.0;
+bool fill_initial_coord = true;
+double initial_lat = 0.0, initial_lon = 0.0;
 
 /**
  * \brief Publishes odometry to '/gps/odom'.
@@ -98,12 +100,19 @@ void callbackCropper(const std_msgs::Float32MultiArray& msg) {
  */
 
 void callbackGPSFix(const sensor_msgs::NavSatFixConstPtr& fix) {
+    if(fill_initial_coord){
+        initial_lat = fix->latitude;
+        initial_lon = fix->longitude;
+        fill_initial_coord = false;
+        ROS_INFO("Initial coordinate: longitude %f, latitude %f", initial_lon, initial_lat);
+    }
+
     if(center_latitude == 0.0 && center_longitude == 0.0){
         ROS_INFO("No specific center latitude and longitude set jet, ignoring gps callback");
         return;	
     }
 
-    if (fix->status.status == sensor_msgs::NavSatStatus::STATUS_NO_FIX) {
+    if (fix->status.status == sensor_msgs::NavSatStatus::STATUS_NO_FIX && (initial_lat == fix->latitude && initial_lon == fix->longitude)) {
         ROS_INFO("No fix.");
         return;
     }
