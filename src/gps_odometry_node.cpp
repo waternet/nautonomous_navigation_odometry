@@ -143,8 +143,8 @@ int main (int argc, char **argv) {
     //Center off map is simulated or set by map cropper
     if(simulate){
         //Coenhaven
-        center_latitude = 52.40568;
-        center_longitude = 4.86406;
+        center_latitude = 52.404434;
+        center_longitude = 4.863055;
     }else{
         //Subscribe to map cropper, sets center of current map 
         ros::Subscriber crop_sub = node.subscribe("cropper_map_gps", 10, callbackCropper);        
