@@ -7,6 +7,7 @@ project(nautonomous_navigation_odometry)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   gps_common
+  nautonomous_gps_adapter
 )
 
 ## System dependencies are found with CMake's conventions
@@ -129,12 +130,17 @@ include_directories(
 ## Declare a C++ executable
  add_executable(gps_odometry_node src/gps_odometry_node.cpp)
 
+add_executable(utm_odometry_node src/utm_odometry_node.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(nautonomous_navigation_gps_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(gps_odometry_node
+   ${catkin_LIBRARIES}
+ )
+
+ target_link_libraries(utm_odometry_node
    ${catkin_LIBRARIES}
  )
 
