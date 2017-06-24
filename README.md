@@ -1,4 +1,4 @@
-# nautonomous navigation odometry {#nautonomous_navigation_odometry}
+# nautonomous pose odom {#nautonomous_pose_odom}
 Translates sensor_msgs/NavSat{Fix,Status} (GPS) into nav_msgs/Odometry using UTM
 
 gps_odometry_node.cpp
