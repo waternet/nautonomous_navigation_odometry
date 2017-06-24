@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>nautonomous_navigation_odometry</name>
+  <name>nautonomous_pose_odom</name>
   <version>0.0.0</version>
-  <description>The nautonomous_navigation_odometry package</description>
+  <description>The nautonomous_pose_odom package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
@@ -42,10 +42,10 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>gps_common</build_depend>
-  <build_depend>nautonomous_gps_adapter</build_depend>
+  <build_depend>nautonomous_pose_utm</build_depend>
   <run_depend>gps_common</run_depend>
   <run_depend>roscpp</run_depend>
-  <run_depend>nautonomous_gps_adapter</run_depend>
+  <run_depend>nautonomous_pose_utm</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
