@@ -16,6 +16,8 @@ std::string frame_id;
 std::string child_frame_id;
 double rot_cov;
 
+bool old_time;
+
 /**
  * \brief Callback on the fix.
  * \params sensor_msgs::NavSatFixConstPtr& fix
