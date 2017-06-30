@@ -23,4 +23,6 @@
 
 	</node>
 
+	<node pkg="rosbag" type="record" name="rosbag_pose_odom" args="record -o $(arg rosbag_prefix_url)/pose/odom $(arg utm_fix_topic) $(arg utm_odom_topic)" output="screen" if="$(arg rosbag_enabled)"/>
+
 </launch>
