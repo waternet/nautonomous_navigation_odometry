@@ -81,9 +81,9 @@ int main (int argc, char **argv)
     priv_node.param<double>("rot_covariance", rot_cov, 99999.0);
 	priv_node.param<bool>("old_time", old_time, false);
 
-    odom_pub = node.advertise<nav_msgs::Odometry>("odom", 10);
+    odom_pub = node.advertise<nav_msgs::Odometry>("utm_odom_topic", 10);
 
-    ros::Subscriber fix_sub = node.subscribe("fix", 10, callbackUTMFix);
+    ros::Subscriber fix_sub = node.subscribe("utm_fix_topic", 10, callbackUTMFix);
 
     ros::spin();
 }
