@@ -1,17 +1,28 @@
 <launch>
 
+	<arg name="rosbag_enabled" default="false"/>
+	<arg name="rosbag_prefix_url" default="/tmp"/>
+	
+	<arg name="old_time" default="false"/>
+
+	<arg name="utm_fix_topic" default="utm_fix_topic"/>
+	<arg name="utm_odom_topic" default="utm_odom_topic"/>
+
 	<node name="utm_odometry_node" pkg="nautonomous_pose_odom" type="utm_odometry_node" output="screen">
 		
 		<!-- Inputs -->
-  		<remap from="fix" to="/pose/utm/fix" />
+  		<remap from="utm_fix_topic" to="$(arg utm_fix_topic)" />
 		
 		<!-- Parameters -->
   		<param name="rot_covariance" value="99999" />
-  		<param name="frame_id" value="base_footprint" />
+  		<param name="frame_id" value="odom" />
+		<param name="old_time" value="$(arg old_time)" />
 
 		<!-- Outputs -->
-		<remap from="odom" to="/pose/utm/odom"/>
+		<remap from="utm_odom_topic" to="$(arg utm_odom_topic)"/>
 
 	</node>
+
+	<node pkg="rosbag" type="record" name="rosbag_pose_odom" args="record -o $(arg rosbag_prefix_url)/pose/odom $(arg utm_fix_topic) $(arg utm_odom_topic)" output="screen" if="$(arg rosbag_enabled)"/>
 
 </launch>

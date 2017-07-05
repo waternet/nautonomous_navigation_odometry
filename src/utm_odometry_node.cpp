@@ -12,6 +12,11 @@ void callbackUTMFix(const nautonomous_pose_msgs::PointWithCovarianceStampedConst
 		nav_msgs::Odometry odom;
 		odom.header.stamp = pointWithCovarianceStamped->header.stamp;
 
+		if (old_time)
+		{
+			odom.header.stamp = ros::Time::now();
+		}
+
 		if (frame_id.empty())
 		{
 		    odom.header.frame_id = pointWithCovarianceStamped->header.frame_id;
@@ -74,10 +79,11 @@ int main (int argc, char **argv)
     priv_node.param<std::string>("frame_id", frame_id, "");
     priv_node.param<std::string>("child_frame_id", child_frame_id, "");
     priv_node.param<double>("rot_covariance", rot_cov, 99999.0);
+	priv_node.param<bool>("old_time", old_time, false);
 
-    odom_pub = node.advertise<nav_msgs::Odometry>("odom", 10);
+    odom_pub = node.advertise<nav_msgs::Odometry>("utm_odom_topic", 10);
 
-    ros::Subscriber fix_sub = node.subscribe("fix", 10, callbackUTMFix);
+    ros::Subscriber fix_sub = node.subscribe("utm_fix_topic", 10, callbackUTMFix);
 
     ros::spin();
 }
