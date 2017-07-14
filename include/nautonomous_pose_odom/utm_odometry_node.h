@@ -14,20 +14,17 @@ ros::Publisher odom_pub;
 // Params
 std::string frame_id;
 std::string child_frame_id;
-double rot_cov;
 
+double rot_cov;
 bool old_time;
 
 /**
- * \brief Callback on the fix.
- * \params sensor_msgs::NavSatFixConstPtr& fix
- * \return
+ * Publishes odometry from the utm coordinate
+ * @params sensor_msgs::NavSatFixConstPtr& fix utm fix coordinate
  */
-void callbackUTMFix(const nautonomous_pose_msgs::PointWithCovarianceStampedConstPtr& pointWithCovarianceStamped);
+void callback_UTM_fix(const nautonomous_pose_msgs::PointWithCovarianceStampedConstPtr& point_with_covariance_stamped);
 
 /**
- * \brief Subscribes to 'fix', publishes to 'odom'.
- * \param
- * \return
+ * Subscribes to 'fix', publishes to 'odom'.
  */
 int main (int argc, char **argv);

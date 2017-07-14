@@ -17,8 +17,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(utm_odometry_node src/utm_odometry_node.cpp)
+add_executable(coordinate_odometry_node src/coordinate_odometry_node.cpp)
 
-target_link_libraries(utm_odometry_node
+target_link_libraries(coordinate_odometry_node
   ${catkin_LIBRARIES}
 )
