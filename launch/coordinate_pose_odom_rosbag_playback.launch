@@ -2,7 +2,7 @@
 
 	<arg name="old_time" default="true"/>
 
-	<include file="$(find nautonomous_pose_odom)/launch/utm_pose_odom.launch">
+	<include file="$(find nautonomous_pose_odom)/launch/coordinate_pose_odom.launch">
  		<param name="old_time" value="$(arg old_time)" />
 	</include>
 
