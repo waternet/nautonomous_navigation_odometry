@@ -69,7 +69,7 @@ int main (int argc, char **argv)
     ros::NodeHandle node;
 
 	// Publisher
-    odom_pub = node.advertise<nav_msgs::Odometry>("odom", 10);
+    odom_pub = node.advertise<nav_msgs::Odometry>("odom_coordinate", 10);
 
 	// Params
     ros::NodeHandle priv_node("~");
